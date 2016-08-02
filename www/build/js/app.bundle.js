@@ -47,19 +47,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
-var AboutPage = (function () {
-    function AboutPage(navCtrl) {
+var CalendarPage = (function () {
+    function CalendarPage(navCtrl) {
         this.navCtrl = navCtrl;
     }
-    AboutPage = __decorate([
+    CalendarPage.prototype.ngOnInit = function () {
+    };
+    CalendarPage.prototype.ngOnDestroy = function () {
+    };
+    CalendarPage = __decorate([
         core_1.Component({
-            templateUrl: 'build/pages/about/about.html'
+            templateUrl: 'build/pages/calendar/calendar.html'
         }), 
         __metadata('design:paramtypes', [ionic_angular_1.NavController])
-    ], AboutPage);
-    return AboutPage;
+    ], CalendarPage);
+    return CalendarPage;
 }());
-exports.AboutPage = AboutPage;
+exports.CalendarPage = CalendarPage;
 
 },{"@angular/core":152,"ionic-angular":416}],3:[function(require,module,exports){
 "use strict";
@@ -101,12 +105,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
-var HomePage = (function () {
-    function HomePage(navCtrl, viewController) {
+var NewsPage = (function () {
+    function NewsPage(navCtrl, viewController) {
         this.navCtrl = navCtrl;
         this.viewController = viewController;
         this.newsLeft = [];
         this.newsRight = [];
+        this.middleContent = [];
         for (var i = 0; i < 5; i++) {
             this.newsLeft.push({ title: 'News Title: ' + i,
                 content: 'This is content for a news article',
@@ -117,18 +122,29 @@ var HomePage = (function () {
                 content: 'This is content for a news article',
                 id: i + 'right'
             });
+            this.middleContent.push({
+                title: 'This Could Be Your Ad!',
+                content: 'contact us at pokemongotigardbizpromo@tigard.com',
+                id: i + '-mid'
+            });
         }
     }
     ;
-    HomePage = __decorate([
+    /**
+     * Tap handler that displays a detail-modal for News Articles.
+     * @param (string) a_id
+     */
+    NewsPage.prototype.showArticle = function (id) {
+    };
+    NewsPage = __decorate([
         core_1.Component({
-            templateUrl: 'build/pages/home/home.html'
+            templateUrl: 'build/pages/news/news.html'
         }), 
         __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.ViewController])
-    ], HomePage);
-    return HomePage;
+    ], NewsPage);
+    return NewsPage;
 }());
-exports.HomePage = HomePage;
+exports.NewsPage = NewsPage;
 
 },{"@angular/core":152,"ionic-angular":416}],5:[function(require,module,exports){
 "use strict";
@@ -142,15 +158,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var home_1 = require('../home/home');
-var about_1 = require('../about/about');
+var news_1 = require('../news/news');
+var calendar_1 = require('../calendar/calendar');
 var contact_1 = require('../contact/contact');
 var TabsPage = (function () {
     function TabsPage() {
         // this tells the tabs component which Pages
         // should be each tab's root Page
-        this.tab1Root = home_1.HomePage;
-        this.tab2Root = about_1.AboutPage;
+        this.tab1Root = news_1.NewsPage;
+        this.tab2Root = calendar_1.CalendarPage;
         this.tab3Root = contact_1.ContactPage;
     }
     TabsPage = __decorate([
@@ -163,7 +179,7 @@ var TabsPage = (function () {
 }());
 exports.TabsPage = TabsPage;
 
-},{"../about/about":2,"../contact/contact":3,"../home/home":4,"@angular/core":152}],6:[function(require,module,exports){
+},{"../calendar/calendar":2,"../contact/contact":3,"../news/news":4,"@angular/core":152}],6:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];

@@ -38,49 +38,34 @@
      </ion-col>
 
      <ion-col> <!-- Col 1 -->
-      <ion-row>
+      <ion-row *ngFor="let item of middleContent">
         <ion-col>
-          <h2>This Could Be Your Add</h2>
+          <h2>{{item.title}}</h2>
+          {{item.content}}
           contact us at <a href="mailto:pokemongotigardbizpromo@tigard.com">pokemongotigardbizpromo@tigard.com</a>
         </ion-col>
       </ion-row>
       
-      <ion-row>
-        <ion-col>
-          <h2>This Could Be Your Add</h2>
-          contact us at <a href="mailto:pokemongotigardbizpromo@tigard.com">pokemongotigardbizpromo@tigard.com</a>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <h2>This Could Be Your Add</h2>
-          contact us at <a href="mailto:pokemongotigardbizpromo@tigard.com">pokemongotigardbizpromo@tigard.com</a>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <h2>This Could Be Your Add</h2>
-          contact us at <a href="mailto:pokemongotigardbizpromo@tigard.com">pokemongotigardbizpromo@tigard.com</a>
-        </ion-col>
-      </ion-row>
 
      </ion-col>
 
-     <ion-col> <!-- Col 2 -->
+     <ion-col>
+       I am a col
+        <!-- Col 2 -->
       <ion-row *ngFor="let item of newsRight">
         <ion-col>
           <ion-card> <!-- Ion Card -->
-         <ion-card-head>
-            {{item.title}}
-         </ion-card-head>
-         <ion-card-content>
-            {{item.content}}
-         </ion-card-content>
-       </ion-card> <!-- end Ion Card -->
+            <ion-card-head>
+              {{item.title}}
+            </ion-card-head>
+            <ion-card-content>
+              {{item.content}}
+            </ion-card-content>
+          </ion-card> <!-- end Ion Card -->
         </ion-col>
-      </ion-row>
+      </ion-row>  
      </ion-col>
-   </ion-row> <!-- End Main Row -->
+   </ion-row> <!-- End Main Row  -->
  </ion-grid>
  
 

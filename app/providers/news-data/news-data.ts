@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
@@ -11,12 +11,12 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class NewsData {
   data: any;
-
+  articles: Array<{ title: string, content: string, id: number, info: Array<{ data: any }> }>;
   constructor(private http: Http) {
     this.data = null;
   }
 
-  load() {
+  getNews() {
     if (this.data) {
       // already loaded data
       return Promise.resolve(this.data);

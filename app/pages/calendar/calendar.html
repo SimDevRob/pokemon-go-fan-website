@@ -1,0 +1,25 @@
+<ion-header>
+ <!-- Google Auth Scripts -->
+   <script src="https://apis.google.com/js/client.js?onload=checkAuth">
+    </script>
+  <ion-navbar>
+    <ion-title>
+      Calendar
+            <div class="pokeball">
+    <img src="//bytebucket.org/dxCog/xcogpics/raw/790bb1697cac4045e92297bfc42fbcfe0c2b5928/pokeball.png" alt="pokeball png">
+  </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="calendar">
+
+   <div id="authorize-div" style="display: none">
+      <span>Authorize access to Google Calendar API</span>
+      <!--Button for the user to click to initiate auth sequence -->
+      <button id="authorize-button" onclick="handleAuthClick(event)">
+        Authorize
+      </button>
+    </div>
+    <pre id="output"></pre>
+</ion-content>
