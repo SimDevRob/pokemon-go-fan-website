@@ -102,14 +102,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
 var HomePage = (function () {
-    function HomePage(navCtrl) {
+    function HomePage(navCtrl, viewController) {
         this.navCtrl = navCtrl;
+        this.viewController = viewController;
+        this.newsLeft = [];
+        this.newsRight = [];
+        for (var i = 0; i < 5; i++) {
+            this.newsLeft.push({ title: 'News Title: ' + i,
+                content: 'This is content for a news article',
+                id: i + 'left'
+            });
+            this.newsRight.push({
+                title: 'News Title: ' + i,
+                content: 'This is content for a news article',
+                id: i + 'right'
+            });
+        }
     }
+    ;
     HomePage = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/home/home.html'
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.NavController])
+        __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.ViewController])
     ], HomePage);
     return HomePage;
 }());
