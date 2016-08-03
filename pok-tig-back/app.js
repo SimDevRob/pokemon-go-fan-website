@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+let news = require('./routes/news');
+let calendar = require('./routes/calendar');
 
 var app = express();
 
@@ -24,6 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/pok_tig-news', news);
+app.use('/pok_tig-cal', calendar);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
