@@ -6,3 +6,7 @@ This is the website framework for the unofficial Pokemon GO Website for fans and
 Tigard, Oregon.
 
 The framework is made by using Ionic and Angular. Authored by<a href="mailto:rob@hackd.design"> Rob Dev </a>
+
+How to deploy:
+
+TODO Soon..

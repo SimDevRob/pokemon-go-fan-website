@@ -48,36 +48,94 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
 //import { NewsData } from '../../providers/news-data/news-data';
-/*
-  Generated class for the NewsDetail component.
-  by Rob(Hackd.design)
-
-  See https://angular.io/docs/ts/latest/api/core/ComponentMetadata-class.html
-  for more info on Angular 2 Components.
+/**
+ * Calendar Component
+ * Renders and populates a calendar using Google Calendar API
+ * @author rob(hackd.design)
+ *
+ *
 */
 var CalendarComponent = (function () {
     function CalendarComponent(navController, viewController) {
         this.navController = navController;
         this.viewController = viewController;
-        this.dayNames = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun'];
+        // Declare Constants
+        this.MAX_TILE_HEIGHT = 6;
+        this.MAX_TILE_WIDTH = 7;
+        this.gridX = [];
+        this.gridY = [];
+        this.rows = [];
+        this.offset = 20;
+        this.counter = 0;
+        this.daysInMonth = {};
+        this.todaysDate = '';
+        this.todaysYear = '';
+        this.todaysMonth = '';
+        this.dayNames = ['Sun', 'Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat'];
+        this.daysInMonth = {
+            January: 31,
+            February: 28,
+            March: 31,
+            April: 30,
+            May: 31,
+            June: 30,
+            July: 31,
+            August: 31,
+            November: 30,
+            December: 31
+        };
     }
+    /////////////////
+    /// LifeCycle ///
+    /////////////////
+    /**
+     * Initialize the calendar tiles and subscribe to data streams
+     */
     CalendarComponent.prototype.ngOnInit = function () {
-        this.day = [];
-        for (var i = 0, m = 31; i < m; i++) {
-            this.day.push({ dayName: this.dayNames[i % 7],
-                monthNumber: 8,
+        // initialize data
+        this.days = [];
+        this.tiles = [];
+        // Set Header Names 
+        for (var i = 0, m = 365; i < m; i++) {
+            this.days.push({ dayName: this.dayNames[i % 7],
+                monthNumber: i % 12,
                 dayNumber: i,
                 message: 'I am day' + i });
         }
-    };
-    ;
+        // Separate each row into arrays
+        var tempRowArray = [];
+        var tempColArray = [];
+        // assign vales into the row
+        // For each row ..
+        this.counter = 0;
+        for (var rowI = 0; rowI < this.MAX_TILE_HEIGHT; rowI++) {
+            debugger;
+            // In each row ..
+            for (var colI = 0; colI < this.MAX_TILE_WIDTH; colI++) {
+                tempColArray.push(this.days[this.counter + this.offset]);
+                //console.log(this.days[this.counter + this.offset]);
+                this.counter++;
+            }
+            this.rows.push(tempColArray);
+            tempColArray = [];
+        }
+    }; // End For
+    /**
+     * Unsubscribe to data streams to avoid memory leaks
+     */
     CalendarComponent.prototype.ngOnDestroy = function () {
+        this.counter = 0;
     };
     ;
+    ////////////
+    // EVENTS //
+    ////////////
+    CalendarComponent.prototype.showDetails = function (tile_id) {
+    };
     CalendarComponent = __decorate([
         core_1.Component({
             selector: 'calendar-component',
-            template: "\n    <ion-row>\n      <ion-col>\n        <ion-card> \n          <ion-card-header>\n            I am the calender component!!\n          </ion-card-header>\n          <ion-card-content>\n            I am the Calendar Content ! ! \n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  "
+            template: " \n  <ion-card>\n  <ion-card-header>\n    <ion-row>\n      <ion-col offset-10 width-10>\n        <button button>Last Month</button>\n      </ion-col>\n      <ion-col text-center offset-10 width-30>\n        <h1>August 2012</h1>\n        </ion-col>\n      <ion-col offset-20>\n        <button button>Next Month</button>\n      </ion-col>\n    </ion-row> <!-- End Header Row -->\n    <ion-row>\n      <ion-col *ngFor=\"let dayName of dayNames\" width-15>\n        {{dayName}}\n      </ion-col>\n    </ion-row>\n  </ion-card-header>\n  <hr>\n  <ion-row *ngFor=\"let row of rows\">\n    <ion-col class=\"calendar-tile\" *ngFor=\"let col of row\">\n          {{col.dayNumber}}\n    </ion-col>\n  </ion-row>\n</ion-card>\n"
         }), 
         __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.ViewController])
     ], CalendarComponent);
