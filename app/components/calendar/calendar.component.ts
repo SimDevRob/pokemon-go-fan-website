@@ -13,34 +13,7 @@ import { Day } from '../../providers/calendar-data/day';
 */
 @Component({
   selector: 'calendar-component',
-  template : ` 
-  <ion-card>
-  <ion-card-header>
-    <ion-row>
-      <ion-col offset-10 width-10>
-        <button button>Last Month</button>
-      </ion-col>
-      <ion-col text-center offset-10 width-30>
-        <h1>August 2012</h1>
-        </ion-col>
-      <ion-col offset-20>
-        <button button>Next Month</button>
-      </ion-col>
-    </ion-row> <!-- End Header Row -->
-    <ion-row>
-      <ion-col *ngFor="let dayName of dayNames" width-15>
-        {{dayName}}
-      </ion-col>
-    </ion-row>
-  </ion-card-header>
-  <hr>
-  <ion-row *ngFor="let row of rows">
-    <ion-col class="calendar-tile" *ngFor="let col of row">
-          {{col.dayNumber}}
-    </ion-col>
-  </ion-row>
-</ion-card>
-`  
+  templateUrl : `build/components/calendar/calendar-template.html`
 })
 /**
  * Main public calendar component class will render and populate calendar stuff.
@@ -57,7 +30,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   gridX = [];
   gridY = [];
   rows = [];
-  offset = 20;
+  offset = 1;
   counter = 0;
   daysInMonth = {};
   todaysDate = '';
@@ -109,7 +82,6 @@ export class CalendarComponent implements OnInit, OnDestroy {
     // For each row ..
     this.counter = 0;
     for ( let rowI = 0; rowI < this.MAX_TILE_HEIGHT; rowI++) {
-    debugger;    
       // In each row ..
       for (let colI = 0; colI < this.MAX_TILE_WIDTH; colI++) {
         tempColArray.push(this.days[this.counter + this.offset]);
@@ -118,20 +90,29 @@ export class CalendarComponent implements OnInit, OnDestroy {
       }
       this.rows.push(tempColArray);
       tempColArray = [];
-    }
-  } // End For
+    }  // End For
+  }
   /**
    * Unsubscribe to data streams to avoid memory leaks
    */
   ngOnDestroy() {
     this.counter = 0;
-  };
+  }
 
      ////////////
     // EVENTS //
    ////////////
+   nextMonth(currentMonth: string) {
+
+   }
+   lastMonth(currentMonth: string) {
+
+     
+   }
 
   showDetails(tile_id: number) {
-
+    console.log("Show Details Triggered with number: ", tile_id);
   }
+  
+
 }

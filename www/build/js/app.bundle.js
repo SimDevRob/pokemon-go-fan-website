@@ -65,7 +65,7 @@ var CalendarComponent = (function () {
         this.gridX = [];
         this.gridY = [];
         this.rows = [];
-        this.offset = 20;
+        this.offset = 1;
         this.counter = 0;
         this.daysInMonth = {};
         this.todaysDate = '';
@@ -109,7 +109,6 @@ var CalendarComponent = (function () {
         // For each row ..
         this.counter = 0;
         for (var rowI = 0; rowI < this.MAX_TILE_HEIGHT; rowI++) {
-            debugger;
             // In each row ..
             for (var colI = 0; colI < this.MAX_TILE_WIDTH; colI++) {
                 tempColArray.push(this.days[this.counter + this.offset]);
@@ -118,24 +117,28 @@ var CalendarComponent = (function () {
             }
             this.rows.push(tempColArray);
             tempColArray = [];
-        }
-    }; // End For
+        } // End For
+    };
     /**
      * Unsubscribe to data streams to avoid memory leaks
      */
     CalendarComponent.prototype.ngOnDestroy = function () {
         this.counter = 0;
     };
-    ;
     ////////////
     // EVENTS //
     ////////////
+    CalendarComponent.prototype.nextMonth = function (currentMonth) {
+    };
+    CalendarComponent.prototype.lastMonth = function (currentMonth) {
+    };
     CalendarComponent.prototype.showDetails = function (tile_id) {
+        console.log("Show Details Triggered with number: ", tile_id);
     };
     CalendarComponent = __decorate([
         core_1.Component({
             selector: 'calendar-component',
-            template: " \n  <ion-card>\n  <ion-card-header>\n    <ion-row>\n      <ion-col offset-10 width-10>\n        <button button>Last Month</button>\n      </ion-col>\n      <ion-col text-center offset-10 width-30>\n        <h1>August 2012</h1>\n        </ion-col>\n      <ion-col offset-20>\n        <button button>Next Month</button>\n      </ion-col>\n    </ion-row> <!-- End Header Row -->\n    <ion-row>\n      <ion-col *ngFor=\"let dayName of dayNames\" width-15>\n        {{dayName}}\n      </ion-col>\n    </ion-row>\n  </ion-card-header>\n  <hr>\n  <ion-row *ngFor=\"let row of rows\">\n    <ion-col class=\"calendar-tile\" *ngFor=\"let col of row\">\n          {{col.dayNumber}}\n    </ion-col>\n  </ion-row>\n</ion-card>\n"
+            templateUrl: "build/components/calendar/calendar-template.html"
         }), 
         __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.ViewController])
     ], CalendarComponent);
@@ -261,6 +264,10 @@ var NewsPage = (function () {
      */
     NewsPage.prototype.showArticle = function (id) {
     };
+    NewsPage.prototype.showModal = function () {
+        var modal = ionic_angular_1.Modal.create(NewsModal);
+        this.navCtrl.present(modal);
+    };
     NewsPage = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/news/news.html'
@@ -270,6 +277,30 @@ var NewsPage = (function () {
     return NewsPage;
 }());
 exports.NewsPage = NewsPage;
+;
+/**
+ * News-Detail Component - This is the modal component that will be displayed when user taps a
+ * news articles.
+ * @param (news-service) getData
+ */
+var NewsModal = (function () {
+    function NewsModal(viewController) {
+        this.viewController = viewController;
+        console.log("constructor fired");
+    }
+    ;
+    NewsModal.prototype.close = function () {
+        this.viewController.dismiss();
+    };
+    ;
+    NewsModal = __decorate([
+        core_1.Component({
+            template: "\n  <h1> I AM A MODEL </h1>\n  <button button (click)=\"close()\">Close</button>\n  "
+        }), 
+        __metadata('design:paramtypes', [ionic_angular_1.ViewController])
+    ], NewsModal);
+    return NewsModal;
+}());
 
 },{"@angular/core":153,"ionic-angular":417}],6:[function(require,module,exports){
 "use strict";

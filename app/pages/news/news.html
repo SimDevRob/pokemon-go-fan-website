@@ -25,7 +25,7 @@
    <ion-row> <!-- Main Row -->  
      <ion-col> <!-- Col 0 -->
        <ion-row *ngFor="let item of newsLeft" >
-         <ion-card> <!-- Ion Card -->
+         <ion-card (click)="showModal()"> <!-- Ion Card -->
          <ion-card-head>
            <h2>{{item.title}}</h2>
          </ion-card-head>
@@ -64,7 +64,7 @@
       </ion-row>  
      </ion-col>
    </ion-row> <!-- End Main Row  -->
- </ion-grid>
+  </ion-grid>
  
 
  
