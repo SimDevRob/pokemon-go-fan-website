@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-let news = require('./routes/news');
-let calendar = require('./routes/calendar');
+let pokTigNews = require('./routes/pok_tig-news');
+let pokTigCal = require('./routes/pok_tig-cal');
 
 var app = express();
 
@@ -25,13 +25,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
-app.use('/pok_tig-news', news);
-app.use('/pok_tig-cal', calendar);
+app.use('/pok_tig-news', pokTigNews);
+app.use('/pok_tig-cal', pokTigCal);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  var err = new Error('Uh-oh Rob Did something wrong with the backend..');
   err.status = 404;
   next(err);
 });

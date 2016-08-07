@@ -1,14 +1,14 @@
-import {Component} from '@angular/core';
-import {NavController, Modal, ViewController} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, Modal, ViewController } from 'ionic-angular';
 import { NewsDetail } from '../../components/news-detail/news-detail';
 import { NewsData } from '../../providers/news-data/news-data';
 @Component({
   templateUrl: 'build/pages/news/news.html'
 })
-/***                                                         *** 
+/*** * * * * * * * * * * * * * * * * * * * * * * * * * * * * *** 
  * ********** POKEMON GO TIGARD FAN CLUB SITE **************** *
  * **********   Main Landing Page Component   **************** *
- * *                                                        * */
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 /**
  * This Component initializes the NewsPage
  */
@@ -37,7 +37,6 @@ export class NewsPage {
       });
     }
   };
-
   /**
    * Tap handler that displays a detail-modal for News Articles.
    * @param (string) a_id
@@ -45,4 +44,29 @@ export class NewsPage {
   showArticle(id: number) {
 
   }
+  showModal() {
+    let modal = Modal.create(NewsModal);
+    this.navCtrl.present(modal);
+  }
+};
+/**
+ * News-Detail Component - This is the modal component that will be displayed when user taps a
+ * news articles.
+ * @param (news-service) getData
+ */
+@Component ({
+  
+  template: `
+  <h1> I AM A MODEL </h1>
+  <button button (click)="close()">Close</button>
+  `
+})
+
+class NewsModal {
+  constructor(private viewController: ViewController){
+    console.log("constructor fired");
+  };
+  close() {
+    this.viewController.dismiss();
+  };
 }
