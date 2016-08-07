@@ -20,7 +20,11 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
   // Google Calendar API.
   authorize(JSON.parse(content), listEvents);
 });
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 1b3a8989fd9b65350db846fc905e271d47bbc7bb
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
  * given callback function.
@@ -96,6 +100,7 @@ function storeToken(token) {
 }
 
 /**
+<<<<<<< HEAD
  * Store token to disk be used in later program executions.
  *
  * @param {Object} token The token to store to disk.
@@ -112,6 +117,8 @@ function storeToken(token) {
   console.log('Token stored to ' + TOKEN_PATH);
 }
 /**
+=======
+>>>>>>> 1b3a8989fd9b65350db846fc905e271d47bbc7bb
  * Lists the next 10 events on the user's primary calendar.
  *
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
@@ -142,6 +149,7 @@ function listEvents(auth) {
       }
     }
   });
+<<<<<<< HEAD
 }
 /**
  * 
@@ -153,4 +161,6 @@ function listEvents(auth) {
 function getEvents(auth, callback) {
   let calendar_hackd = google.calendar('v3');
   calendar.events.list
+=======
+>>>>>>> 1b3a8989fd9b65350db846fc905e271d47bbc7bb
 }

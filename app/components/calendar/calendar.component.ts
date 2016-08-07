@@ -97,6 +97,10 @@ export class CalendarComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.counter = 0;
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1b3a8989fd9b65350db846fc905e271d47bbc7bb
      ////////////
     // EVENTS //
    ////////////
@@ -107,7 +111,16 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
      
    }
+<<<<<<< HEAD
   showDetails(tile_id: number) {
     console.log("Show Details Triggered with number: ", tile_id);
   }
+=======
+
+  showDetails(tile_id: number) {
+    console.log("Show Details Triggered with number: ", tile_id);
+  }
+  
+
+>>>>>>> 1b3a8989fd9b65350db846fc905e271d47bbc7bb
 }
