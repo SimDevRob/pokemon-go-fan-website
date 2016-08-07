@@ -12,14 +12,16 @@ How to deploy:
 <h1>Front-End:</h1>
 
 <h2>intstall dependancies:</h2>
-$ npm install ionic@beta -g
+$ npm install ionic@beta -g 
+<br>
 $ sudo npm install cordova -g
 
 <h2>Intstall dependancies:</h2>
 
 $ ../directory-of-the-project/npm install
+<br>
 $ ../directory-of-the-project/ionic serve
-
+<br>
 Then follow the on screen instructions.
 
 <h1>Back - End:</h1>
