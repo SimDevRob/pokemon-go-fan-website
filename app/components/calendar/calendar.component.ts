@@ -90,37 +90,31 @@ export class CalendarComponent implements OnInit, OnDestroy {
       this.rows.push(tempColArray);
       tempColArray = [];
     }  // End For
-  }
+  } // NGInit
   /**
    * Unsubscribe to data streams to avoid memory leaks
    */
   ngOnDestroy() {
     this.counter = 0;
   }
-<<<<<<< HEAD
-=======
 
->>>>>>> 1b3a8989fd9b65350db846fc905e271d47bbc7bb
      ////////////
     // EVENTS //
    ////////////
+
+   /**
+    * Updates View to the next month.
+    * @param {string} 
+    */
    nextMonth(currentMonth: string) {
-
    }
-   lastMonth(currentMonth: string) {
-
-     
-   }
-<<<<<<< HEAD
-  showDetails(tile_id: number) {
-    console.log("Show Details Triggered with number: ", tile_id);
-  }
-=======
-
-  showDetails(tile_id: number) {
-    console.log("Show Details Triggered with number: ", tile_id);
-  }
+  /**
+   * Updates the view to the previous month.
+   */
+  lastMonth(currentMonth: string) { 
   
-
->>>>>>> 1b3a8989fd9b65350db846fc905e271d47bbc7bb
+  }
+  showDetails(tile_id: number) {
+    console.log("Show Details Triggered with number: ", tile_id);
+  }
 }

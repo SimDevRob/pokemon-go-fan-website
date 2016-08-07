@@ -24,14 +24,13 @@ export class CalendarPage implements OnInit, OnDestroy {
     for ( let i = 0, m = 31; i < m; i++ ) {
       this.daySquares.push({ dayNumber: i });
     }
-
     /**
      * Subscribe to calendar events and data
      */
-    
   }
   ngOnDestroy() {
-    
+
+
   }
   
 }

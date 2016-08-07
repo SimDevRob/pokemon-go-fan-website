@@ -118,7 +118,7 @@ var CalendarComponent = (function () {
             this.rows.push(tempColArray);
             tempColArray = [];
         } // End For
-    };
+    }; // NGInit
     /**
      * Unsubscribe to data streams to avoid memory leaks
      */
@@ -128,8 +128,15 @@ var CalendarComponent = (function () {
     ////////////
     // EVENTS //
     ////////////
+    /**
+     * Updates View to the next month.
+     * @param {string}
+     */
     CalendarComponent.prototype.nextMonth = function (currentMonth) {
     };
+    /**
+     * Updates the view to the previous month.
+     */
     CalendarComponent.prototype.lastMonth = function (currentMonth) {
     };
     CalendarComponent.prototype.showDetails = function (tile_id) {
