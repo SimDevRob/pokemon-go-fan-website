@@ -2,8 +2,8 @@
  * A HACKd.design server component to get data from Google API
  * @author {email} rob@hackd.design
  * 2016 MIT
- */ 
-  ////////
+ */
+ ////////
  /// DB Connection
 ////////
 /**
@@ -23,8 +23,8 @@ var readline = require('readline');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 module.exports = router;
-  ////////
- /// A P I
+////////
+/// A P I
 ////////
 /**
  * Makes a call to googleapis and lists the next 10 events on the user's primary calendar.
@@ -94,128 +94,101 @@ router.get('/', function (req, res, next) {
  */
 router.route('/calendar-data')
     .get(function (req, res) {
-    let eventsItems  = updateCalendarEvents();
+    var eventsItems = updateCalendarEvents();
     // Do Bookshelf Stuff
     res.json(listEvents);
     // res.send('Calendar Data Accessed');
 })
     .post(function (req, res) {
 });
-
-  ///////
- // Models 
 ///////
-
-var User = bookshelf.Model.extend({
-  tableName: 'users',
-  posts: function() {
-    return this.hasMany(Posts);
-  }
+// Models 
+///////
+var calendarEvents = bookshelf.Model.extend({
+    tableName: 'calendarEvents',
+    
 });
-
-var Posts = bookshelf.Model.extend({
-  tableName: 'messages',
-  tags: function() {
-    return this.belongsToMany(Tag);
-  }
-});
-
-var Tag = bookshelf.Model.extend({
-  tableName: 'tags'
-})
-
-User.where('id', 1).fetch({withRelated: ['posts.tags']}).then(function(user) {
-  console.log(user.related('posts').toJSON());
-}).catch(function(err) {
-  console.error(err);
-});
-
 ////////////////
 // User Route ////
-///////////////
+//////////////
+/***
 
 router.route('/users')
-  // fetch all users
-  .get(function (req, res) {
+    .get(function (req, res) {
     Users.forge()
-    .fetch()
-    .then(function (collection) {
-      res.json({error: false, data: collection.toJSON()});
+        .fetch()
+        .then(function (collection) {
+        res.json({ error: false, data: collection.toJSON() });
     })
-    .catch(function (err) {
-      res.status(500).json({error: true, data: {message: err.message}});
+        .catch(function (err) {
+        res.status(500).json({ error: true, data: { message: err.message } });
     });
-  })
-  // create a user
-  .post(function (req, res) {
+})
+    .post(function (req, res) {
     User.forge({
-      name: req.body.name,
-      email: req.body.email
+        name: req.body.name,
+        email: req.body.email
     })
-    .save()
-    .then(function (user) {
-      res.json({error: false, data: {id: user.get('id')}});
+        .save()
+        .then(function (user) {
+        res.json({ error: false, data: { id: user.get('id') } });
     })
-    .catch(function (err) {
-      res.status(500).json({error: true, data: {message: err.message}});
-    }); 
-  });
-router.route('/users/:id')
-  // fetch user
-  .get(function (req, res) {
-    User.forge({id: req.params.id})
-    .fetch()
-    .then(function (user) {
-      if (!user) {
-        res.status(404).json({error: true, data: {}});
-      }
-      else {
-        res.json({error: false, data: user.toJSON()});
-      }
-    })
-    .catch(function (err) {
-      res.status(500).json({error: true, data: {message: err.message}});
+        .catch(function (err) {
+        res.status(500).json({ error: true, data: { message: err.message } });
     });
-  })
-  // update user details
-  .put(function (req, res) {
-    User.forge({id: req.params.id})
-    .fetch({require: true})
-    .then(function (user) {
-      user.save({
-        name: req.body.name || user.get('name'),
-        email: req.body.email || user.get('email')
-      })
-      .then(function () {
-        res.json({error: false, data: {message: 'User details updated'}});
-      })
-      .catch(function (err) {
-        res.status(500).json({error: true, data: {message: err.message}});
-      });
-    })
-    .catch(function (err) {
-      res.status(500).json({error: true, data: {message: err.message}});
-    });
-  })
-  // delete a user
-  .delete(function (req, res) {
-    User.forge({id: req.params.id})
-    .fetch({require: true})
-    .then(function (user) {
-      user.destroy()
-      .then(function () {
-        res.json({error: true, data: {message: 'User successfully deleted'}});
-      })
-      .catch(function (err) {
-        res.status(500).json({error: true, data: {message: err.message}});
-      });
-    })
-    .catch(function (err) {
-      res.status(500).json({error: true, data: {message: err.message}});
-    });
-  });
-
-
-process.stderr.on('data', function(data) {
-  console.log(data);
 });
+router.route('/users/:id')
+    .get(function (req, res) {
+    User.forge({ id: req.params.id })
+        .fetch()
+        .then(function (user) {
+        if (!user) {
+            res.status(404).json({ error: true, data: {} });
+        }
+        else {
+            res.json({ error: false, data: user.toJSON() });
+        }
+    })
+        .catch(function (err) {
+        res.status(500).json({ error: true, data: { message: err.message } });
+    });
+})
+    .put(function (req, res) {
+    User.forge({ id: req.params.id })
+        .fetch({ require: true })
+        .then(function (user) {
+        user.save({
+            name: req.body.name || user.get('name'),
+            email: req.body.email || user.get('email')
+        })
+            .then(function () {
+            res.json({ error: false, data: { message: 'User details updated' } });
+        })
+            .catch(function (err) {
+            res.status(500).json({ error: true, data: { message: err.message } });
+        });
+    })
+        .catch(function (err) {
+        res.status(500).json({ error: true, data: { message: err.message } });
+    });
+})
+    .delete(function (req, res) {
+    User.forge({ id: req.params.id })
+        .fetch({ require: true })
+        .then(function (user) {
+        user.destroy()
+            .then(function () {
+            res.json({ error: true, data: { message: 'User successfully deleted' } });
+        })
+            .catch(function (err) {
+            res.status(500).json({ error: true, data: { message: err.message } });
+        });
+    })
+        .catch(function (err) {
+        res.status(500).json({ error: true, data: { message: err.message } });
+    });
+});
+process.stderr.on('data', function (data) {
+    console.log(data);
+});
+    */

@@ -4,6 +4,39 @@
  * A stand-alone file that validates a user for Google's API
  * edited by rob@hackd.design 
  */
+
+     ///////////
+    //  BOOKSHELF and KNEX
+   ///////////
+var knex = require('knex')({
+    client: 'sqlite3',
+    connection: {
+        filename: "./hackd-pt.db"
+    }
+});
+let bookshelf = require('bookshelf')(knex);
+/**
+ * Create a knex table to store calendar data in.
+ */
+knex.schema.creatTable('calendarEvents', function(){
+    table.increments();
+    table.string('label');
+    table.string('dateTime');
+    table.timestamps();
+});
+/**
+ * Make a Bookshelf model for the calendarTable.
+ */
+let Calendar = bookshelf.Model.extend({
+    tableName: 'calendarEvents',
+   
+})
+
+
+     ////////////
+    //  OAuth2 Token Refresher
+   ////////////
+
 var fs = require('fs');
 var readline = require('readline');
 var google = require('googleapis');
