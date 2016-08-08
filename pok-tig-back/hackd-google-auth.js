@@ -32,6 +32,8 @@ let Calendar = bookshelf.Model.extend({
    
 })
 
+Calendar.b
+
 
      ////////////
     //  OAuth2 Token Refresher
